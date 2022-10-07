@@ -2,6 +2,9 @@ pipeline {
     agent {
         label 'JDK11'
     }
+    triggers { 
+        pollSCM('* * * * *') 
+        }
     stages {
         stage('clone') {
             steps {
