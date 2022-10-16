@@ -3,7 +3,7 @@ pipeline {
         label 'JDK-11'
     }
     triggers { 
-        triggers { cron('30 17 * * 1-5') } 
+        cron('30 17 * * 1-5') 
         }
     stages {
         stage('clone') {
