@@ -3,13 +3,13 @@ pipeline {
         label 'JDK-11'
     }
     triggers { 
-        pollSCM('* * * * *') 
+        triggers { cron('30 17 * * 1-5') } 
         }
     stages {
         stage('clone') {
             steps {
                 git url: "https://github.com/GUDAPATIVENKATESH/shopizer.git" ,
-                    branch: "devlop"
+                    branch: "relese"
             }
         }
         stage('build') {
