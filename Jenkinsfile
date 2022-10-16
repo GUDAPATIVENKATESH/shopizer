@@ -9,7 +9,7 @@ pipeline {
         stage('clone') {
             steps {
                 git url: "https://github.com/GUDAPATIVENKATESH/shopizer.git" ,
-                    branch: "SPRINT_1_DEV"
+                    branch: "devlop"
             }
         }
         stage('build') {
