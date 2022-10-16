@@ -1,6 +1,6 @@
 pipeline {
     agent {
-        label 'JDK11'
+        label 'JDK-11'
     }
     triggers { 
         pollSCM('* * * * *') 
@@ -14,9 +14,7 @@ pipeline {
         }
         stage('build') {
             steps {
-                sh "mvn clean"
-                sh "mvn package"
-                sh "mvn install"
+                sh "mvnw clean install"
             }
         }
     }
