@@ -1,38 +1,30 @@
 pipeline {
-    parameters {
-        choice(name: 'BRANCH', choices: ['master', 'main', 'none'], description: 'Pick something')
-        string(name: 'GOAL1', defaultValue: 'mvn clean', description: 'enter maven goal')
-        string(name: 'GOAL2', defaultValue: 'mvn clean', description: 'enter maven goal')
-    }
+    agent none
     stages {
-        agent {
-            label('NODE1')
-        }
-        stage('clone_to_node1') {
+        stage('in_node1') {
+            agent { label 'NODE1' }
             steps {
                 git url : 'https://github.com/GUDAPATIVENKATESH/shopizer.git' ,
-                branch : '${params.BRANCH}'
+                branch : 'master'
             }
         }
-        stage('build_in_node1') {
+        stage('in') {
+            agent { label 'NODE1' }
             steps {
-                sh '${params.GOAL1}'
+                sh 'mvn clean'
             }
         }
-    }
-    stages {
-        agent {
-            label('NODE2')
-        }
-        stage('clone_node2') {
+        stage('in_node2') {
+            agent { label 'NODE2' }
             steps {
                 git url : 'https://github.com/GUDAPATIVENKATESH/shopizer.git' ,
-                branch : '${params.BRANCH}'
+                branch : 'master'
             }
         }
-        stage('build_in_node2') {
+        stage('in2') {
+            agent { label 'NODE2' }
             steps {
-                sh '${params.GOAL2}'
+                sh 'mvn clean'
             }
         }
     }
