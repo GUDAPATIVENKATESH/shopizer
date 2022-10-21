@@ -5,26 +5,26 @@ pipeline {
             agent { label 'NODE1' }
             steps {
                 git url : 'https://github.com/GUDAPATIVENKATESH/shopizer.git' ,
-                branch : 'master'
+                branch: 'master'
             }
         }
         stage('in') {
             agent { label 'NODE1' }
             steps {
-                sh 'mvn clean'
+                sh 'mcn clean'
             }
         }
         stage('in_node2') {
             agent { label 'NODE2' }
             steps {
                 git url : 'https://github.com/GUDAPATIVENKATESH/shopizer.git' ,
-                branch : 'master'
+                branch : 'devlop'
             }
         }
         stage('in2') {
             agent { label 'NODE2' }
             steps {
-                sh 'mvn clean'
+                sh 'mvn package'
             }
         }
     }
